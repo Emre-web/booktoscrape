@@ -1,0 +1,12 @@
+import requests
+from bs4 import BeautifulSoup
+
+url = "http://books.toscrape.com/"
+
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+page_count_string = soup.find('li', class_= 'current').text
+page_count = int(page_count_string.strip().split(' ')[-1])
+print(page_count)
+print(type(page_count))
